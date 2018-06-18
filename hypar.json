@@ -16,14 +16,14 @@
       "step": 10,
       "type": "number"    
     },
-    "levels: {
+    "levels": {
       "description": "Building levels.",
       "max": 40,
       "min": 10,
       "step": 5,
       "type": "number"    
     },
-    "floorType: {
+    "floorType": {
       "description": "Floor perimeter type.",
       "max": 11,
       "min": 1,
