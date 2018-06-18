@@ -1,5 +1,5 @@
 {
-  "function": "MakeTower.makeTower",
+  "function": "MakeTowerShell.makeTowerShell",
   "runtime": "python3.6",
   "parameters":{
     "xSize": {
@@ -10,7 +10,7 @@
       "type": "number"    
     },
     "ySize": {
-      "description": "Building Depth.",
+      "description": "Building depth.",
       "max": 100,
       "min": 40,
       "step": 10,
