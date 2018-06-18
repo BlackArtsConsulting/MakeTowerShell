@@ -1,0 +1,42 @@
+{
+  "function": "MakeTower.makeTower",
+  "runtime": "python3.6",
+  "parameters":{
+    "xSize": {
+      "description": "Building width.",
+      "max": 100,
+      "min": 40,
+      "step": 10,
+      "type": "number"    
+    },
+    "ySize": {
+      "description": "Building Depth.",
+      "max": 100,
+      "min": 40,
+      "step": 10,
+      "type": "number"    
+    },
+    "levels: {
+      "description": "Building levels.",
+      "max": 40,
+      "min": 10,
+      "step": 5,
+      "type": "number"    
+    },
+    "floorType: {
+      "description": "Floor perimeter type.",
+      "max": 11,
+      "min": 1,
+      "step": 1,
+      "type": "number"    
+    }    
+  },
+  "returns": {
+    "floors": {
+      "description": "Number of floors."
+    },
+    "area": {
+      "description": "Total building area."
+    }
+  }
+}
