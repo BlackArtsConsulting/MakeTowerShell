@@ -17,12 +17,6 @@ class aecSpacer:
 
     __aecGeometry = aecGeometry()
 
-    def __init__(self):
-        """
-        aecSpacer Constructor
-        """
-        pass
-
     def copy(self, space: aecSpace, x: float = 0, y: float = 0, z: float = 0) -> aecSpace:
         """
         Returns a new aecSpace that is a copy of the delivered aecSpace.
@@ -43,8 +37,23 @@ class aecSpacer:
             traceback.print_exc() 
             return None
 
+    def getDifference(self, boundary: aecSpace, shape: aecSpace) -> List[aecSpace]:
+        """
+        Returns a list of spaces formed from the 
+        difference of the two delivered spaces.
+        """
+        bndPnts = boundary.points_floor
+        shpPnts = shape.points_floor
+        polygons = self.__aecGeometry.getDifference(bndPnts, shpPnts)
+        spaces = []
+        for points in polygons:
+            space = aecSpace()
+            space.boundary = points
+            spaces.append(space)
+        return spaces
+    
     def place(self, space: aecSpace, copies: int = 1, 
-                    x: float = 0, y: float = 0, z: float = 0) -> bool:
+                    x: float = 0, y: float = 0, z: float = 0) -> List[aecSpace]:
         """
         Creates and returns a list of aecSpaces placed along the delivered xyz displacements.
         Returned list does not include the delivered aecSpace.
@@ -54,16 +63,17 @@ class aecSpacer:
             spaces = []
             index = 0
             while index < copies:
-                newSpace = self.copy(space, x, y, z)
-                spaces += [newSpace]
-                space = newSpace
                 index += 1
+                X = x * index
+                Y = y * index
+                Z = z * index
+                spaces += [self.copy(space, X, Y, Z)]                
             return spaces
         except Exception:
             traceback.print_exc()
             return None
 
-    def placeOnLine(self, shape: aecSpace, border: aecSpace, orient: List[int]):
+    def placeOnLine(self, shape: aecSpace, border: aecSpace, orient: List[int]) -> bool:
         """
         Attempts to place one aecSpace (shape) withn the boundary of
         another (border) at a random interior point along a specified line
@@ -145,7 +155,7 @@ class aecSpacer:
         except Exception:
             traceback.print_exc()
             return None
-
+    
     def stack(self, space: aecSpace, copies: int = 1, plenum: float = 0) -> List[aecSpace]:
         """
         Creates and returns a list of aecSpaces stacked upward from the
@@ -162,7 +172,6 @@ class aecSpacer:
 
     def stackToArea(self, space, area, plenum = 0):
         """
-        [aecSpace,] buildToArea(aecSpace, number, number)
         Compares the area of the delivered aecSpace to the target area and stacks
         identical spaces from the original space until the target area is met or
         exceeded, returning a list of resulting aecSpaces.

@@ -96,8 +96,7 @@ def makeTowerShell(xSize: float = 60,
         spaceMesh = space.mesh_graphic
         model.add_triangle_mesh(spaceMesh.vertices, spaceMesh.normals, spaceMesh.indices, color)   
     return {"model": model.save_base64(), 'computed':{'floors':levels, 'area':area}}
-
-#    model.save_glb('C:\\Users\\Anthony\\Dropbox\\Business\\BlackArts\\Development\\GitHub\\MakeTowerShell\\model.glb')
+#    model.save_glb('model.glb')
 #
 #makeTowerShell(xSize = uniform(40, 100), 
 #               ySize = uniform(40, 100), 
